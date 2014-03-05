@@ -20,6 +20,13 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
+# Install gems into hidden directory in app root
+cat << EOF > ~/.gemrc
+gemhome: $BUILD_DIR/.gems
+gempath:
+- $BUILD_DIR/.gems
+EOF
+
 # include .files when moving things around
 shopt -s dotglob
 
@@ -29,6 +36,20 @@ cd $BUILD_DIR
 if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
+
+# Install Jekyll
+echo "-----> Installing Jekyll"
+export GEM_HOME=$BUILD_DIR/.gems
+export PATH=$BUILD_DIR/.gems/bin:$PATH
+export LC_ALL=fr_FR.UTF-8
+export LANG=fr_FR.UTF-8
+/usr/local/bin/gem install bundler jekyll --no-rdoc --no-ri
+
+echo "-----> Compiling Jekyll site"
+cd $BUILD_DIR/src
+$BUILD_DIR/.gems/bin/jekyll build --destination $BUILD_DIR/www
+
+cd $BUILD_DIR
 
 APACHE_URL="https://heroku-buildpack-php.s3.amazonaws.com/apache-""$APACHE_VERSION""$heroku_rev"".tar.gz"
 echo "-----> Bundling Apache version $APACHE_VERSION"
