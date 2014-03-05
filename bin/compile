@@ -12,11 +12,8 @@ set -e
 heroku_rev='-2'
 
 # config
-MCRYPT_VERSION="2.5.8"
 APACHE_VERSION="2.2.25"
 APACHE_PATH="apache"
-PHP_VERSION="5.3.27"
-PHP_PATH="php"
 
 BIN_DIR=$(dirname $0)
 BUILD_DIR=$1
@@ -38,25 +35,12 @@ if [ -f www/Procfile ]; then
   mv www/Procfile .
 fi
 
-MCRYPT_URL="https://heroku-buildpack-php.s3.amazonaws.com/mcrypt-""$MCRYPT_VERSION""$heroku_rev"".tar.gz"
-echo "-----> Bundling mcrypt version $MCRYPT_VERSION"
-curl --silent --max-time 60 --location "$MCRYPT_URL" | tar xz
-
 APACHE_URL="https://heroku-buildpack-php.s3.amazonaws.com/apache-""$APACHE_VERSION""$heroku_rev"".tar.gz"
 echo "-----> Bundling Apache version $APACHE_VERSION"
 curl --silent --max-time 60 --location "$APACHE_URL" | tar xz
 
-PHP_URL="https://heroku-buildpack-php.s3.amazonaws.com/php-$PHP_VERSION""$heroku_rev"".tar.gz"
-echo "-----> Bundling PHP version $PHP_VERSION"
-curl --silent --max-time 60 --location "$PHP_URL" | tar xz
-
 # update config files
 cp $LP_DIR/conf/httpd.conf $APACHE_PATH/conf
-cp $LP_DIR/conf/php.ini php
-
-# make php available on bin
-mkdir -p bin
-ln -s /app/php/bin/php bin/php
 
 cat >>boot.sh <<EOF
 for var in \`env|cut -f1 -d=\`; do
@@ -66,8 +50,6 @@ touch /app/apache/logs/error_log
 touch /app/apache/logs/access_log
 tail -F /app/apache/logs/error_log &
 tail -F /app/apache/logs/access_log &
-export LD_LIBRARY_PATH=/app/php/lib/php
-export PHP_INI_SCAN_DIR=/app/www
 echo "Launching apache"
 exec /app/apache/bin/httpd -DNO_DETACH
 EOF
