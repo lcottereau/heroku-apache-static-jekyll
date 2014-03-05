@@ -25,11 +25,6 @@ shopt -s dotglob
 
 cd $BUILD_DIR
 
-# move app things to www
-mkdir -p $CACHE_DIR/www
-mv * $CACHE_DIR/www
-mv $CACHE_DIR/www .
-
 # keep Procfile
 if [ -f www/Procfile ]; then
   mv www/Procfile .
@@ -55,6 +50,3 @@ exec /app/apache/bin/httpd -DNO_DETACH
 EOF
 
 chmod +x boot.sh
-
-# clean the cache
-rm -rf $CACHE_DIR
