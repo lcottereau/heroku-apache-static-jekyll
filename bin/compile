@@ -45,6 +45,12 @@ export LC_ALL=fr_FR.UTF-8
 export LANG=fr_FR.UTF-8
 /usr/local/bin/gem install bundler jekyll --no-rdoc --no-ri
 
+echo "-----> Analyse des fichiers"
+echo "       BUILD_DIR"
+ls -l $BUILD_DIR
+echo "       CACHE_DIR"
+ls -l $CACHE_DIR
+
 echo "-----> Compiling Jekyll site"
 cd $BUILD_DIR/src
 $BUILD_DIR/.gems/bin/jekyll build --destination $BUILD_DIR/www
