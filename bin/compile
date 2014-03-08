@@ -39,6 +39,8 @@ export LANG=fr_FR.UTF-8
 /usr/local/bin/gem install bundler jekyll --no-rdoc --no-ri
 
 echo "-----> Analyse des fichiers"
+echo "       <current> : "`pwd`
+ls -l
 echo "       BUILD_DIR : $BUILD_DIR"
 ls -l $BUILD_DIR
 
