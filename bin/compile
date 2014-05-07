@@ -22,8 +22,7 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 
 # Install ruby
-wget http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p545.tar.gz
-tar xfz ruby-1.9.3-p545.tar.gz
+curl --silent --max-time 60 --location "http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p545.tar.gz" | tar xz
 cd ruby-1.9.3-p545
 ./configure 
 make
