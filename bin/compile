@@ -30,6 +30,9 @@ EOF
 # include .files when moving things around
 shopt -s dotglob
 
+# Version de ruby utilisée
+echo "-----> Using Ruby version: "`ruby --version`
+
 # Install Jekyll
 echo "-----> Installing Jekyll"
 export GEM_HOME=$BUILD_DIR/.gems
