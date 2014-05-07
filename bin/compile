@@ -24,7 +24,7 @@ LP_DIR=`cd $(dirname $0); cd ..; pwd`
 # Install ruby
 curl --silent --max-time 60 --location "http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p545.tar.gz" | tar xz
 cd ruby-1.9.3-p545
-./configure 
+./configure --prefix=/usr/local/share/ruby1.9/
 make
 make install
 
