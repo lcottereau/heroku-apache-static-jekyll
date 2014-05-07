@@ -20,6 +20,15 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
+
+# Install ruby
+wget http://cache.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p545.tar.gz
+tar xfz ruby-1.9.3-p545.tar.gz
+cd ruby-1.9.3-p545
+./configure 
+make
+make install
+
 # Install gems into hidden directory in app root
 cat << EOF > ~/.gemrc
 gemhome: $BUILD_DIR/.gems
