@@ -20,9 +20,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
-
-rvm list
-
 # Install gems into hidden directory in app root
 cat << EOF > ~/.gemrc
 gemhome: $BUILD_DIR/.gems
@@ -32,6 +29,8 @@ EOF
 
 # include .files when moving things around
 shopt -s dotglob
+
+find $BUILD_DIR
 
 # Version de ruby utilisée
 echo "-----> Using Ruby version: "`ruby --version`
