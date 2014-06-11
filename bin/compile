@@ -21,8 +21,7 @@ CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 
-find .
-find $BUILD_DIR
+rvm list
 
 # Install gems into hidden directory in app root
 cat << EOF > ~/.gemrc
