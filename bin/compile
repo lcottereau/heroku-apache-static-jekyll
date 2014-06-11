@@ -20,6 +20,10 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
+
+find .
+find $BUILD_DIR
+
 # Install gems into hidden directory in app root
 cat << EOF > ~/.gemrc
 gemhome: $BUILD_DIR/.gems
