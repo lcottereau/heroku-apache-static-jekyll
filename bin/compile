@@ -39,7 +39,7 @@ echo "-----> Using Ruby version: "`ruby --version`
 
 # Install Jekyll
 echo "-----> Installing Jekyll"
-gem install bundler jekyll --no-rdoc --no-ri
+gem install bundler jekyll therubyracer --no-rdoc --no-ri
 
 echo "-----> Compiling Jekyll site"
 cd $BUILD_DIR
