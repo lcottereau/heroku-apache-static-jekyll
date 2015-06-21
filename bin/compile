@@ -35,7 +35,6 @@ export GEM_HOME=$BUILD_DIR/.gems
 export PATH=$BUILD_DIR/bin:$BUILD_DIR/.gems/bin:$PATH
 export LC_ALL=fr_FR.UTF-8
 export LANG=fr_FR.UTF-8
-echo "----> locate ruby "`locate bin/ruby`
 echo "-----> Using Ruby version: "`ruby --version`
 
 # Install Jekyll
