@@ -43,7 +43,7 @@ gem install bundler jekyll therubyracer --no-rdoc --no-ri
 
 echo "-----> Compiling Jekyll site"
 cd $BUILD_DIR
-$BUILD_DIR/.gems/bin/jekyll build --destination $BUILD_DIR/www
+jekyll build --destination $BUILD_DIR/www
 
 APACHE_URL="https://heroku-buildpack-php.s3.amazonaws.com/apache-""$APACHE_VERSION""$heroku_rev"".tar.gz"
 echo "-----> Bundling Apache version $APACHE_VERSION"
